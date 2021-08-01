@@ -8,27 +8,18 @@ text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
 
-
-def encrypt(text_par, shift_par):
-    ciphertext = ''
+def caeser(text_par, shift_par, positions_par):
+    end_text = ''
     for i in text:
         position = alphabet.index(i)
-        new_position = position + shift_par
+        if positions_par == 'encode':
+            new_position = position + shift_par
+        elif positions_par == 'decode':
+            new_position = position - shift_par
         new_letter = alphabet[new_position]
-        ciphertext += new_letter
-    print(f"The encoded message is: '{ciphertext}'")
+        end_text += new_letter
+    print(f"The {positions_par}d message is: '{end_text}'")
 
-def decrypt (text_par, shift_par):
-    decryptedtext = ''
-    for i in text:
-        position = alphabet.index(i)
-        oldposition = position - shift_par
-        old_letter = alphabet[oldposition]
-        decryptedtext += old_letter
-    print(f'The decrypted message is "{decryptedtext}"".')
+caeser(text, shift, direction)
 
-if direction == "encode":
-    encrypt(text, shift)
-elif direction == "decode":
-    decrypt(text, shift)
-    
+
